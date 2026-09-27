@@ -24,11 +24,11 @@ Re-verify each number with:
 
 ## Draft — D0 (launch)
 
-> Your AI agent is billing you before you type a word.
+> Your AI agent is loading 2,726 tokens before you type a word.
 >
-> Every turn, the system re-injects its instructions, memory files, skill
-> listing and tool schemas. None of it is your prompt. All of it is on the
-> bill — every single message.
+> Every turn, the system sends its instructions, memory files, skill
+> listing and tool schemas again. None of it is your prompt. The context
+> window pays for it every single message.
 >
 > I measured my own agent's setup: 2,726 tokens per turn loaded before I
 > typed anything. A 20-turn session re-sends ~54k tokens of pure standing
@@ -41,7 +41,8 @@ Re-verify each number with:
 >
 > Deterministic by construction: the README demo is regenerated from
 > committed fixtures and diffed in CI on every push — the demo is a contract,
-> not a screenshot.
+> not a screenshot. The gpt-family count is exact (tiktoken); claude/gemini
+> are published-calibration estimates with error bands in the README.
 >
 > github.com/ar33s08/contextfloor — would genuinely love your take. Which
 > agent should I add an adapter for next?
