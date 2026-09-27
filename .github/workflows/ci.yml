@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push: {}
+  pull_request: {}
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e .
+      - name: gate (compile -> import -> contracts -> cli)
+        run: python tools/gate.py
+      - name: pytest
+        run: python -m pip install -q pytest && python -m pytest tests -q
+      - name: dep-free suite
+        run: python tests/run_all.py
+
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: self-scan — eat our own dogfood
+        run: |
+          python -m pip install -e .
+          ctxfloor scan generic --path fixtures/lean-hermes
+          ctxfloor gate generic --path fixtures/lean-hermes --budget 5000 --fail-on error
+          # the bloated fixture must gate (exit 1): a tool whose gate no longer
+          # fires must fail the build
+          ! ctxfloor gate generic --path fixtures/bloated-hermes --budget 500 --fail-on error >/dev/null

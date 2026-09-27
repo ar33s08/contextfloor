@@ -1,0 +1,3 @@
+# PREFS
+
+- Prefers concise answers.
