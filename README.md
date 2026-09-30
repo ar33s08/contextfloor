@@ -44,8 +44,9 @@ $ echo $?
 ```
 
 On a real install the same scan reads like a balance sheet — my own Hermes
-default profile reports **2,726 tokens/turn** (149 system / 1,001 memory /
-1,576 skill-listing) before I have typed a word.
+default profile reports **2,728 tokens/turn** (149 system / 966 memory /
+1,613 skill-listing, measured 2026-09-27; your config will differ, that's
+the point) before I have typed a word.
 
 *(The two console blocks above are generated from committed fixtures by
 `python tools/make_fixtures.py` and diffed on every CI push by

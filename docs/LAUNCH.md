@@ -24,13 +24,13 @@ Re-verify each number with:
 
 ## Draft — D0 (launch)
 
-> Your AI agent is loading 2,726 tokens before you type a word.
+> Your AI agent is loading 2,728 tokens before you type a word.
 >
 > Every turn, the system sends its instructions, memory files, skill
 > listing and tool schemas again. None of it is your prompt. The context
 > window pays for it every single message.
 >
-> I measured my own agent's setup: 2,726 tokens per turn loaded before I
+> I measured my own agent's setup: 2,728 tokens per turn loaded before I
 > typed anything. A 20-turn session re-sends ~54k tokens of pure standing
 > overhead.
 >
